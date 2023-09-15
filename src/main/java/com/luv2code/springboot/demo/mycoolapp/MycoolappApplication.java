@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.sql.SQLOutput;
+import java.util.List;
 
 
 @SpringBootApplication
@@ -24,10 +25,35 @@ public class MycoolappApplication {
 //			createStudent(studentDAO);
 //			createMultiperStudents(studentDAO);
 
-			readStudent(studentDAO);
+//			readStudent(studentDAO);
+
+//			queryForStudents(studentDAO);
+
+			queryForStudentsByLastName(studentDAO);
 
 
 		};
+	}
+
+	private void queryForStudentsByLastName(StudentDAO studentDAO) {
+		//get a list of students
+		List<Student> theStudents = studentDAO.findByLastName("Duck");
+
+		//display list of students
+		for(Student tempStudent : theStudents){
+			System.out.println(tempStudent);
+		}
+	}
+
+	private void queryForStudents(StudentDAO studentDAO) {
+		//get a list of students
+		List<Student> theStudents = studentDAO.findAll();
+
+		//display list of students
+		for(Student tempStudent : theStudents){
+			System.out.println(tempStudent);
+		}
+
 	}
 
 	private void readStudent(StudentDAO studentDAO) {
