@@ -23,17 +23,54 @@ public class MycoolappApplication {
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO){
 		return runner ->{
 //			createStudent(studentDAO);
-//			createMultiperStudents(studentDAO);
+			createMultiperStudents(studentDAO);
 
 //			readStudent(studentDAO);
 
 //			queryForStudents(studentDAO);
 
-			queryForStudentsByLastName(studentDAO);
+//			queryForStudentsByLastName(studentDAO);
 
+//			updateStudent(studentDAO);
+
+//			deleteStudent(studentDAO);
+
+//			deleteAllStudents(studentDAO);
 
 		};
 	}
+
+	private void deleteAllStudents(StudentDAO studentDAO) {
+		System.out.println("DELETING all students");
+		int numRowsDeleted = studentDAO.deleteAll();
+		System.out.println("DELETED row count " + numRowsDeleted);
+	}
+
+	private void deleteStudent(StudentDAO studentDAO) {
+
+		int studentId = 4;
+		System.out.println("Deleting student id: " + studentId);
+		studentDAO.delete(studentId);
+
+	}
+
+	private void updateStudent(StudentDAO studentDAO) {
+		//retrieve student based on the id: primary key
+		int studentId= 1;
+		System.out.println("Getting student with id: " + studentId);
+		Student myStudent = studentDAO.findById(studentId);
+
+		//change the first name to "Scooby"
+		System.out.println("Updating student ...");
+		myStudent.setFirstName(("Scooby"));
+
+		//update the student
+		studentDAO.update(myStudent);
+
+		//display the updated student
+		System.out.println("Updated Student" + myStudent);
+	}
+
 
 	private void queryForStudentsByLastName(StudentDAO studentDAO) {
 		//get a list of students
@@ -111,5 +148,6 @@ public class MycoolappApplication {
 
 		//display the id of the saved student
 		System.out.println("Saved student. Generated id:" + tempStudent.getId());
+
 	}
 }
