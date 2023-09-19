@@ -5,20 +5,25 @@ import jakarta.persistence.*;
 @Entity
 @Table(name="employee")
 public class Employee {
-    //define field
+
+    // define fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private int id;
+
     @Column(name="first_name")
     private String firstName;
-    @Column(name="last_Name")
+
+    @Column(name="last_name")
     private String lastName;
+
     @Column(name="email")
     private String email;
 
-    //define constructor
-    public Employee(){
+
+    // define constructors
+    public Employee() {
 
     }
 
@@ -28,7 +33,7 @@ public class Employee {
         this.email = email;
     }
 
-//define getter/setter
+    // define getter/setter
 
     public int getId() {
         return id;
@@ -62,7 +67,7 @@ public class Employee {
         this.email = email;
     }
 
-    //define toString
+    // define toString
     @Override
     public String toString() {
         return "Employee{" +
@@ -73,3 +78,11 @@ public class Employee {
                 '}';
     }
 }
+
+
+
+
+
+
+
+
