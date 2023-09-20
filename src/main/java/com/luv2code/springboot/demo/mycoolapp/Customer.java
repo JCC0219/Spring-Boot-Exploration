@@ -1,5 +1,6 @@
 package com.luv2code.springboot.demo.mycoolapp;
 
+import com.luv2code.springboot.demo.mycoolapp.validation.CourseCode;
 import jakarta.validation.constraints.*;
 
 public class Customer {
@@ -10,13 +11,26 @@ public class Customer {
     @Size(message = "is required",min = 1)
     private String lastName;
 
+
+
     @NotNull(message = "is required")
     @Min(value=0, message="must be greater than or equal to zero")
-    @Max(value=0, message="must be less than or equal to 10")
+    @Max(value=10, message="must be less than or equal to 10")
     private Integer freePasses;
 
     @Pattern(regexp = "^[a-zA-Z0-9]{5}", message = "only 5 characters/digits")
     private String postalCode;
+
+    @CourseCode
+    private String courseCode;
+
+    public String getCourseCode() {
+        return courseCode;
+    }
+
+    public void setCourseCode(String courseCode) {
+        this.courseCode = courseCode;
+    }
 
     public String getPostalCode() {
         return postalCode;
@@ -49,6 +63,6 @@ public class Customer {
     }
 
     public void setLastName(String lastName) {
-        lastName = lastName;
+        this.lastName = lastName;
     }
 }
